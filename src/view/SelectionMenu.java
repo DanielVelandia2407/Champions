@@ -5,17 +5,18 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class AlgorithmMenuView extends JFrame {
+public class SelectionMenu extends JFrame {
 
-    private JButton btnSequentialSearch;
-    private JButton btnBinarySearch;
-    private JButton btnHashSearch;
+    private JButton btnSimpleList;
+    private JButton btnSimpleCircularList;
+    private JButton btnDoubleList;
+    private JButton btnDoubleCircularList;
     private JButton btnBack;
 
-    public AlgorithmMenuView() {
+    public SelectionMenu() {
         // Basic window configuration
-        setTitle("Algoritmos de Búsqueda");
-        setSize(500, 350);
+        setTitle("Insertion Sort - Tipos de Listas");
+        setSize(600, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(15, 15));
@@ -29,12 +30,12 @@ public class AlgorithmMenuView extends JFrame {
         titlePanel.setBackground(new Color(70, 130, 180)); // Steel Blue
         titlePanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
-        JLabel lblTitle = new JLabel("Algoritmos de Búsqueda");
+        JLabel lblTitle = new JLabel("Insertion Sort - Listas");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 22));
         lblTitle.setForeground(Color.WHITE);
         lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel lblSubtitle = new JLabel("Seleccione una opción para continuar");
+        JLabel lblSubtitle = new JLabel("Seleccione el tipo de lista a ordenar");
         lblSubtitle.setFont(new Font("Segoe UI", Font.ITALIC, 14));
         lblSubtitle.setForeground(new Color(240, 248, 255));
         lblSubtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -45,28 +46,38 @@ public class AlgorithmMenuView extends JFrame {
 
         add(titlePanel, BorderLayout.NORTH);
 
-        // Center panel with buttons
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new GridBagLayout());
+        // Center panel with buttons - Improved layout
+        JPanel centerPanel = new JPanel(new BorderLayout());
         centerPanel.setBackground(new Color(240, 248, 255));
-        centerPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        centerPanel.setBorder(new EmptyBorder(30, 50, 30, 50));
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(2, 2, 20, 20));
+        // Panel para los 4 botones principales en grid 2x2
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 25, 25));
         buttonPanel.setBackground(new Color(240, 248, 255));
 
         // Custom styled buttons
-        btnSequentialSearch = createStyledButton("Búsqueda Secuencial", new Color(41, 128, 185));
-        btnBinarySearch = createStyledButton("Búsqueda Binaria", new Color(46, 134, 193));
-        btnHashSearch = createStyledButton("Funciones Hash", new Color(46, 134, 193));
+        btnSimpleList = createStyledButton("Lista Simple", new Color(41, 128, 185));
+        btnSimpleCircularList = createStyledButton("Lista Simple Circular", new Color(46, 134, 193));
+        btnDoubleList = createStyledButton("Lista Doble", new Color(46, 134, 193));
+        btnDoubleCircularList = createStyledButton("Lista Doble Circular", new Color(46, 134, 193));
+
+        buttonPanel.add(btnSimpleList);
+        buttonPanel.add(btnSimpleCircularList);
+        buttonPanel.add(btnDoubleList);
+        buttonPanel.add(btnDoubleCircularList);
+
+        centerPanel.add(buttonPanel, BorderLayout.CENTER);
+
+        JPanel backButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        backButtonPanel.setBackground(new Color(240, 248, 255));
+        backButtonPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
+
         btnBack = createStyledButton("Volver", new Color(231, 76, 60));
+        btnBack.setPreferredSize(new Dimension(150, 40));
 
-        buttonPanel.add(btnSequentialSearch);
-        buttonPanel.add(btnBinarySearch);
-        buttonPanel.add(btnHashSearch);
-        buttonPanel.add(btnBack);
+        backButtonPanel.add(btnBack);
+        centerPanel.add(backButtonPanel, BorderLayout.SOUTH);
 
-        centerPanel.add(buttonPanel);
         add(centerPanel, BorderLayout.CENTER);
 
         // Bottom panel with information
@@ -74,16 +85,12 @@ public class AlgorithmMenuView extends JFrame {
         bottomPanel.setBackground(new Color(220, 220, 220));
         bottomPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JLabel lblInfo = new JLabel("© 2025 - Search Algorithms v1.0 Daniel Velandia 20191020140");
+        JLabel lblInfo = new JLabel("© 2025 - APOCO Sorting Algorithms v1.0");
         lblInfo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         lblInfo.setForeground(new Color(100, 100, 100));
 
         bottomPanel.add(lblInfo);
         add(bottomPanel, BorderLayout.SOUTH);
-
-        // Back button action
-        btnBack.addActionListener(e -> {
-        });
     }
 
     // Method to create a styled button
@@ -97,21 +104,27 @@ public class AlgorithmMenuView extends JFrame {
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.setPreferredSize(new Dimension(200, 50));
 
-        // Optional hover effect would require additional listeners
+        // Añadir un poco de margen interior a los botones
+        button.setMargin(new Insets(10, 15, 10, 15));
+
         return button;
     }
 
-    // Methods to assign external actions to buttons
-    public void addSequentialSearchListener(ActionListener listener) {
-        btnSequentialSearch.addActionListener(listener);
+    // Methods to assign external actions to buttons (corrigiendo nombres)
+    public void addSimpleListListener(ActionListener listener) {
+        btnSimpleList.addActionListener(listener);
     }
 
-    public void addBinarySearchListener(ActionListener listener) {
-        btnBinarySearch.addActionListener(listener);
+    public void addSimpleCircularListListener(ActionListener listener) {
+        btnSimpleCircularList.addActionListener(listener);
     }
 
-    public void addHashSearchListener(ActionListener listener) {
-        btnHashSearch.addActionListener(listener);
+    public void addDoubleListListener(ActionListener listener) {
+        btnDoubleList.addActionListener(listener);
+    }
+
+    public void addDoubleCircularListListener(ActionListener listener) {
+        btnDoubleCircularList.addActionListener(listener);
     }
 
     public void addBackListener(ActionListener listener) {
@@ -122,5 +135,5 @@ public class AlgorithmMenuView extends JFrame {
     public void showWindow() {
         setVisible(true);
     }
-
 }
+
