@@ -1,8 +1,10 @@
 package controller;
 
 import view.MainView;
-import view.InsertionMenu;
-import view.SelectionMenu;
+import view.ChampionsTitlesView;
+import view.EliminationsRMView;
+
+import model.ChampionsTitlesModel;
 
 public class MainController {
     private MainView mainView;
@@ -10,42 +12,39 @@ public class MainController {
     public MainController(MainView view) {
         this.mainView = view;
 
-
-        // Listeners para Sorting
-        this.mainView.addInsertionSortListener(e -> openInsertionView());
-        this.mainView.addSelectionSortListener(e -> openSelectionView());
-
-
-
-
+        // Listeners para nuestros nuevos botones
+        this.mainView.addListaChampionsListener(e -> openChampionsListView());
+        //this.mainView.addEliminacionesRealMadridListener(e -> openRealMadridEliminacionesView());
     }
 
-    // Method to show Insertion view
-    private void openInsertionView() {
+    // Método para mostrar la vista de Listado de Champions
+    private void openChampionsListView() {
         mainView.setVisible(false);
-        InsertionMenu insertionMenu = new InsertionMenu();
-        InsertionMenuController controller = new InsertionMenuController(insertionMenu);
+        ChampionsTitlesView championsListView = new ChampionsTitlesView();
+        ChampionsTitlesModel championsModel = new ChampionsTitlesModel();
+        ChampionsTitlesController controller = new ChampionsTitlesController(championsListView, championsModel);
+
         controller.setMainView(mainView);
 
-        insertionMenu.showWindow();
+        championsListView.showView();
     }
 
-    // Method to show Selection view
-    private void openSelectionView() {
-        mainView.setVisible(false);
-        SelectionMenu selectionMenu = new SelectionMenu();
-        SelectionMenuController controller = new SelectionMenuController(selectionMenu);
-        controller.setMainView(mainView);
+//    // Método para mostrar la vista de Eliminaciones del Real Madrid
+//    private void openRealMadridEliminacionesView() {
+//        mainView.setVisible(false);
+//        EliminationsRMView realMadridView = new EliminationsRMView();
+//        EliminationsRMController controller = new EliminationsRMController(realMadridView);
+//        controller.setMainView(mainView);
+//
+//        realMadridView.showView();
+//    }
 
-        selectionMenu.showWindow();
-    }
-
-    // Main method for demonstration
+    // Método main para demostración
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             MainView mainView = new MainView();
             MainController controller = new MainController(mainView);
-            mainView.setVisible(true);
+            mainView.showView();
         });
     }
 }
