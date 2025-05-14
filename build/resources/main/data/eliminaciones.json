@@ -5,7 +5,7 @@
     "opponent": "Manchester City",
     "resultHome": "1-1",
     "resultAway": "0-4",
-    "description": "El Real Madrid cayó eliminado en semifinales ante el Manchester City tras un contundente 4-0 en el Etihad Stadium. Después de un empate a uno en el Bernabéu, el equipo de Guardiola demostró su superioridad con goles de Bernardo Silva (2), Akanji y Álvarez, poniendo fin a las esperanzas del Real Madrid de defender su título.",
+    "description": "Pep Guardiola logró su revancha histórica con una exhibición táctica en el Etihad. Rodri y Kevin De Bruyne dominaron el centro del campo, mientras que Bernardo Silva (doblete), Akanji y Julián Álvarez liquidaron al vigente campeón. El Madrid mostró su peor versión defensiva en años.",
     "imagePath": "images/eliminations/city_2023.jpg"
   },
   {
@@ -14,7 +14,7 @@
     "opponent": "Manchester City",
     "resultHome": "1-2",
     "resultAway": "1-2",
-    "description": "El equipo blanco fue eliminado en octavos por el Manchester City de Guardiola, con un global de 2-4. En el partido de ida en el Bernabéu, el Madrid se adelantó con gol de Isco, pero el City remontó con tantos de Gabriel Jesus y De Bruyne. En el partido de vuelta en Manchester, el Madrid cayó nuevamente por 2-1, con protagonismo negativo para Varane.",
+    "description": "La pandemia alteró el calendario, concentrando la eliminatoria en agosto. Varane cometió dos errores garrafales en la ida, y en la vuelta el Madrid cayó pese al gol tempranero de Benzema. Gabriel Jesus fue clave con un gol y asistencia.",
     "imagePath": "images/eliminations/city_2020.jpg"
   },
   {
@@ -23,7 +23,7 @@
     "opponent": "Ajax",
     "resultHome": "2-1",
     "resultAway": "1-4",
-    "description": "Histórica remontada del Ajax en el Bernabéu, ganando 1-4 y eliminando al tricampeón de Europa. Tras ganar 2-1 en Amsterdam, el Madrid era favorito para pasar, pero el joven equipo del Ajax sorprendió con una exhibición en el Bernabéu con goles de Ziyech, Neres, Tadic y Schöne, poniendo fin a la era de dominio europeo madridista.",
+    "description": "El Ajax de Ten Hag escribió una de las mayores sorpresas en el Bernabéu. Con un equipo plagado de jóvenes (De Jong, De Ligt, Van de Beek), ejecutaron un fútbol total que dejó KO al tricampeón. Tadic dio una magistral lección con 1 gol y 2 asistencias.",
     "imagePath": "images/eliminations/ajax_2019.jpg"
   },
   {
@@ -32,7 +32,7 @@
     "opponent": "Juventus",
     "resultHome": "1-1",
     "resultAway": "1-2",
-    "description": "La Juventus de Allegri eliminó al Real Madrid de Ancelotti en semifinales con un resultado global de 3-2. En el partido de ida en Turín, la Juventus ganó 2-1 con goles de Morata y Tevez, mientras que en el Bernabéu, pese al tanto inicial de Cristiano Ronaldo, Morata (ex madridista) anotó el gol que clasificó a los italianos para la final de Berlín.",
+    "description": "Morata, exmadridista, se convirtió en el verdugo anotando en ambos partidos. Buffon fue decisivo con paradas clave a Cristiano y James. La Juve de Allegri demostró mejor solidez defensiva que el Madrid de Ancelotti.",
     "imagePath": "images/eliminations/juventus_2015.jpg"
   },
   {
@@ -41,7 +41,34 @@
     "opponent": "Borussia Dortmund",
     "resultHome": "2-0",
     "resultAway": "1-4",
-    "description": "El Borussia Dortmund de Jürgen Klopp superó al Real Madrid de Mourinho en semifinales, especialmente gracias a un impresionante 4-1 en la ida con cuatro goles de Robert Lewandowski. A pesar de la victoria por 2-0 en el Bernabéu en la vuelta, el Madrid quedó eliminado con un 4-3 en el global, quedándose a las puertas de la final de Wembley.",
+    "description": "Lewandowski firmó una de las mejores actuaciones individuales en la historia de la competición (4 goles en la ida). El Madrid casi remonta en el Bernabéu con goles de Benzema y Ramos, pero Weidenfeller detuvo el empate en el 89'.",
     "imagePath": "images/eliminations/dortmund_2013.jpg"
+  },
+  {
+    "season": "2003-2004",
+    "phase": "Cuartos de final",
+    "opponent": "AS Monaco",
+    "resultHome": "4-2",
+    "resultAway": "1-3",
+    "description": "Eliminatoria icónica donde Morientes (cedido por el Madrid) anotó el gol decisivo. Raúl adelantó al Madrid en el Bernabéu, pero Giuly y Morientes dieron la vuelta al marcador. La regla de goles fuera dejó fuera a los galácticos.",
+    "imagePath": "images/eliminations/monaco_2004.jpg"
+  },
+  {
+    "season": "2000-2001",
+    "phase": "Semifinal",
+    "opponent": "Bayern Munich",
+    "resultHome": "0-1",
+    "resultAway": "1-2",
+    "description": "El Bayern se vengó de la final del 2000. Kahn fue clave con paradas milagrosas a Raúl y Figo. El gol de Elber en el Bernabéu y la exhibición de Effenberg marcaron el fin de la era de los 'galácticos 1.0'.",
+    "imagePath": "images/eliminations/bayern_2001.jpg"
+  },
+  {
+    "season": "1988-1989",
+    "phase": "Semifinal",
+    "opponent": "AC Milan",
+    "resultHome": "0-5",
+    "resultAway": "1-1",
+    "description": "El Dream Team de Sacchi arrasó al Madrid en San Siro con hat-trick de Van Basten. Hugo Sánchez anotó el único gol madridista. El Milan demostró ser el mejor equipo del mundo con un fútbol revolucionario.",
+    "imagePath": "images/eliminations/milan_1989.jpg"
   }
 ]
