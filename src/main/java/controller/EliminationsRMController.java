@@ -297,10 +297,12 @@ public class EliminationsRMController {
         // Avanzar al siguiente índice
         currentIndex = (currentIndex + 1) % currentEliminations.size();
 
-        // Actualizar selección en la tabla
-        view.getSelectedEliminationIndex();
-        view.updateEliminationsTable(currentEliminations);
-        view.showEliminationDetails(currentEliminations.get(currentIndex));
+        // Seleccionar la eliminación actual y mostrar sus detalles
+        Elimination elimination = currentEliminations.get(currentIndex);
+        view.showEliminationDetails(elimination);
+
+        // Seleccionar la fila correspondiente en la tabla
+        view.selectEliminationRow(currentIndex);
     }
 
     /**
@@ -314,9 +316,11 @@ public class EliminationsRMController {
         // Retroceder al índice anterior
         currentIndex = (currentIndex - 1 + currentEliminations.size()) % currentEliminations.size();
 
-        // Actualizar selección en la tabla
-        view.getSelectedEliminationIndex();
-        view.updateEliminationsTable(currentEliminations);
-        view.showEliminationDetails(currentEliminations.get(currentIndex));
+        // Seleccionar la eliminación actual y mostrar sus detalles
+        Elimination elimination = currentEliminations.get(currentIndex);
+        view.showEliminationDetails(elimination);
+
+        // Seleccionar la fila correspondiente en la tabla
+        view.selectEliminationRow(currentIndex);
     }
 }

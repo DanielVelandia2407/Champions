@@ -8,6 +8,12 @@ import utils.FileManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Modelo para gestionar los equipos campeones de la Champions League.
+ * Permite cargar, guardar, agregar, actualizar y eliminar equipos,
+ * así como realizar búsquedas y obtener estadísticas.
+ */
+
 public class ChampionsTitlesModel {
     private CircularDoublyLinkedList<ChampionsTeam> teamsList;
     private FileManager fileManager;

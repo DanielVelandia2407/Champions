@@ -87,7 +87,6 @@ public class Elimination {
         this.imagePath = imagePath;
     }
 
-    // Método toString para facilitar la depuración
     @Override
     public String toString() {
         return "Elimination{" +
@@ -101,7 +100,10 @@ public class Elimination {
                 '}';
     }
 
-    // Métodos equals y hashCode para comparaciones
+    /**
+     * Método para obtener una representación en cadena de la eliminación.
+     * @return Cadena con la información de la eliminación.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

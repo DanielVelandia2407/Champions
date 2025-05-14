@@ -43,11 +43,11 @@ public class FileManager {
         try {
             String content;
 
-            // Primero, intentar cargar como recurso del classpath
+            // Intentar cargar el archivo como recurso del classpath
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
 
             if (inputStream != null) {
-                // Es un recurso en el classpath
+                // Leer el archivo desde el classpath
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
                     StringBuilder sb = new StringBuilder();
                     String line;
@@ -110,24 +110,6 @@ public class FileManager {
         }
     }
 
-    /* Eliminar o modificar los métodos relacionados con Elimination si no existe esta clase
-    public List<Elimination> loadEliminationsFromJSON(String resourcePath) throws Exception {
-        // ...
-    }
-
-    public void saveEliminationsToJSON(List<Elimination> eliminations, String resourcePath) throws Exception {
-        // ...
-    }
-
-    public void createSampleEliminationsFile(String resourcePath) throws Exception {
-        // ...
-    }
-
-    private List<Elimination> createSampleEliminationsData() {
-        // ...
-    }
-    */
-
     /**
      * Verifica si un archivo existe
      * @param filePath Ruta del archivo a verificar
@@ -156,7 +138,6 @@ public class FileManager {
      * @return Lista con datos de muestra
      */
     private List<ChampionsTeam> createSampleTeamsData() {
-        // Implementar datos de ejemplo si es necesario
         return new ArrayList<>();
     }
 }

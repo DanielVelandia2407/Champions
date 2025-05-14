@@ -1,77 +1,89 @@
-# Search Algorithms
+# Champions League Manager
 
-A comprehensive Java application that demonstrates various search algorithms and data structures through an interactive GUI. This educational tool allows users to explore and visualize different search techniques including sequential search, binary search, hash-based methods, and tree-based structures.
+A comprehensive Java application for managing Champions League data with an interactive GUI. This educational tool allows users to explore and visualize information about Champions League titles won by different teams and track Real Madrid's eliminations from the competition.
 
 ## Features
 
-This application implements the following search algorithms and data structures:
+This application implements the following features:
 
-### Internal Search Algorithms
-- **Sequential Search**: A simple linear search algorithm that checks each element in a list until it finds a match.
-- **Binary Search**: An efficient search algorithm that works on sorted arrays by repeatedly dividing the search interval in half.
+### Champions Titles Management
+- **View Teams and Titles**: Browse through teams that have won the Champions League and see details about their titles.
+- **Sort Teams**: Sort teams by number of titles (ascending or descending) or alphabetically.
+- **Search Teams**: Search for specific teams by name.
+- **Add/Edit/Remove**: Manage teams and their Champions League titles.
+- **Statistics**: View statistics about Champions League winners.
 
-### Hash Functions
-- **Modulo Function**: Uses the remainder of division to map keys to hash table indices.
-- **Square Function**: Squares the key and extracts the middle digits for hash table indexing.
-- **Truncation Function**: Removes parts of the key and uses the remaining portion for indexing.
-- **Folding Function**: Divides the key into parts, combines them, and uses the result for indexing.
-
-### Search Trees
-- **Digital Tree**: A tree data structure where each node's position is determined by the digits/bits of the key.
-- **Residue Tree**: A tree structure that organizes data based on the remainder when divided by a specific value.
-- **Multiple Residue Tree**: An extension of the residue tree that uses multiple divisors.
-- **Huffman Tree**: A tree used for data compression, where frequently occurring characters have shorter codes.
+### Real Madrid Eliminations Tracker
+- **View Eliminations**: Browse through Real Madrid's eliminations from the Champions League.
+- **Sort Eliminations**: Sort eliminations by season, phase, or opponent.
+- **Search Eliminations**: Search for specific eliminations by season, phase, opponent, or description.
+- **Add/Edit/Remove**: Manage elimination records with details like results, descriptions, and images.
+- **Stack Implementation**: Uses a stack data structure to manage eliminations chronologically.
 
 ## Project Structure
 
 The project follows the Model-View-Controller (MVC) architecture pattern:
 
-- **Model**: Contains the data structures and algorithms implementation.
-  - `DigitalTreeModel.java`
-  - `HuffmanTreeModel.java`
-  - `MultipleResidueTreeModel.java`
-  - `ResidueHashModel.java`
+- **Model**: Contains the data structures and data management implementation.
+  - `ChampionsTitlesModel.java`: Manages Champions League titles data.
+  - `EliminationsRMModel.java`: Manages Real Madrid eliminations data.
+  - Data classes:
+    - `ChampionsTeam.java`: Represents a team with Champions League titles.
+    - `Title.java`: Represents a Champions League title.
+    - `Elimination.java`: Represents a Real Madrid elimination.
+  - Data structures:
+    - `CircularDoublyLinkedList.java`: Custom implementation for storing teams.
 
 - **View**: Contains the GUI components.
   - `MainView.java`: The main application window.
-  - `AlgorithmMenuView.java`: Menu for selecting internal search algorithms.
-  - `HashAlgorithmView.java`: Menu for selecting hash functions.
-  - `TreeView.java`: Menu for selecting tree-based algorithms.
-  - Various algorithm-specific views (e.g., `BinarySearchView.java`, `SequentialSearchView.java`, etc.)
+  - `ChampionsTitlesView.java`: View for managing Champions League titles.
+  - `EliminationsRMView.java`: View for managing Real Madrid eliminations.
 
 - **Controller**: Contains the logic that connects the models and views.
   - `MainController.java`: Manages navigation between main views.
-  - Various algorithm-specific controllers (e.g., `BinarySearchController.java`, `SequentialSearchController.java`, etc.)
+  - `ChampionsTitlesController.java`: Controls the Champions titles view.
+  - `EliminationsRMController.java`: Controls the Real Madrid eliminations view.
 
-- **Utilities**: Contains data files used for testing and demonstrating the algorithms.
+- **Utilities**: Contains helper classes.
+  - `FileManager.java`: Handles file operations for loading and saving data.
+  - `ImageLoader.java`: Manages loading and displaying images.
+  - `SortingUtility.java`: Provides sorting functionality.
 
 ## Requirements
 
 - Java Development Kit (JDK) 8 or higher
 - Java Swing (included in JDK)
+- Gradle (for building the project)
 
 ## How to Run
 
 1. Clone or download this repository.
 2. Open the project in your preferred Java IDE (Eclipse, IntelliJ IDEA, etc.).
-3. Build the project.
-4. Run the `main.java.Main.java` file.
+3. Build the project using Gradle.
+4. Run the `src/main/java/Main.java` file.
 
 Alternatively, you can run the compiled JAR file (if available) using:
 
 ```
-java -jar search_algorithms.jar
+java -jar champions.jar
 ```
 
 ## Usage
 
 1. Launch the application.
-2. From the main menu, select one of the three main categories:
-   - **Búsqueda Interna** (Internal Search)
-   - **Búsqueda Externa** (External Search)
-   - **Árboles de Búsqueda** (Search Trees)
-3. Select a specific algorithm from the submenu.
-4. Follow the on-screen instructions to interact with the selected algorithm.
+2. From the main menu, select one of the two main options:
+   - **Listado de Champions por Equipo** (Champions List by Team)
+   - **Eliminaciones del Real Madrid** (Real Madrid Eliminations)
+3. In the Champions List view:
+   - Browse through teams and their titles
+   - Use the search bar to find specific teams
+   - Use the sorting options to organize teams
+   - Add, edit, or remove teams and titles
+4. In the Real Madrid Eliminations view:
+   - Browse through elimination records
+   - Use the search bar to find specific eliminations
+   - Use the sorting options to organize eliminations
+   - Add, edit, or remove elimination records
 
 ## Author
 

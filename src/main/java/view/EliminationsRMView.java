@@ -351,6 +351,19 @@ public class EliminationsRMView extends JFrame {
         return sortComboBox.getSelectedIndex();
     }
 
+    /**
+     * Selecciona una fila específica en la tabla.
+     * @param rowIndex índice de la fila a seleccionar
+     */
+    public void selectEliminationRow(int rowIndex) {
+        if (rowIndex >= 0 && rowIndex < eliminationsTable.getRowCount()) {
+            eliminationsTable.setRowSelectionInterval(rowIndex, rowIndex);
+            // Hacer scroll a la fila seleccionada
+            eliminationsTable.scrollRectToVisible(
+                    eliminationsTable.getCellRect(rowIndex, 0, true));
+        }
+    }
+
     // Métodos para agregar listeners a los componentes
 
     public void addTableSelectionListener(javax.swing.event.ListSelectionListener listener) {

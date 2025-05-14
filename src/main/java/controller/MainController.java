@@ -13,7 +13,7 @@ public class MainController {
     public MainController(MainView view) {
         this.mainView = view;
 
-        // Listeners para nuestros nuevos botones
+        // Listeners para botones
         this.mainView.addListaChampionsListener(e -> openChampionsListView());
         this.mainView.addEliminacionesRealMadridListener(e -> openRealMadridEliminacionesView());
     }
@@ -48,7 +48,7 @@ public class MainController {
         eliminationsView.showView();
     }
 
-    // Método main para demostración
+    // Pruebas
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             MainView mainView = new MainView();

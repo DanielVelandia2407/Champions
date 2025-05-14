@@ -24,10 +24,8 @@ public class ChampionsTitlesController {
         this.view = view;
         this.model = model;
 
-        // Inicializar datos
         loadTeamsData();
 
-        // Configurar listeners
         setupEventListeners();
     }
 
@@ -36,7 +34,6 @@ public class ChampionsTitlesController {
     }
 
     private void setupEventListeners() {
-        // Listener para el botón de volver al menú principal
         view.addBackButtonListener(e -> {
             view.closeView();
             if (mainView != null) {
@@ -44,7 +41,6 @@ public class ChampionsTitlesController {
             }
         });
 
-        // Listener para selección en la tabla
         view.addTableSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -96,7 +92,6 @@ public class ChampionsTitlesController {
         fileChooser.setDialogTitle("Seleccionar Archivo JSON");
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos JSON (*.json)", "json"));
 
-        // Opcional: Establecer directorio inicial a Descargas
         String userHome = System.getProperty("user.home");
         File downloadsDir = new File(userHome + "/Downloads");
         if (downloadsDir.exists()) {
@@ -107,7 +102,6 @@ public class ChampionsTitlesController {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             try {
-                // Depuración
                 System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath());
                 System.out.println("¿El archivo existe? " + selectedFile.exists());
                 System.out.println("Tamaño del archivo: " + selectedFile.length() + " bytes");
@@ -124,12 +118,10 @@ public class ChampionsTitlesController {
                 List<ChampionsTeam> teams = model.getAllTeams();
                 System.out.println("Equipos cargados: " + teams.size());
 
-                // Imprimir los equipos cargados para depuración
                 for (ChampionsTeam team : teams) {
                     System.out.println("Equipo: " + team.getName() + ", Títulos: " + team.getTitles().size());
                 }
 
-                // Actualizar la tabla y la etiqueta con la ruta del archivo
                 updateTeamsTable();
                 view.updateFilePathLabel(selectedFile.getAbsolutePath());
 
@@ -176,7 +168,7 @@ public class ChampionsTitlesController {
             ChampionsTeam team = teams.get(i);
             List<Title> titles = team.getTitles();
 
-            // Obtener el último título (asumiendo que están ordenados cronológicamente)
+            // Obtener el último título
             Title lastTitle = titles.isEmpty() ? null : titles.get(titles.size() - 1);
 
             tableData[i][0] = team.getName();
@@ -191,7 +183,6 @@ public class ChampionsTitlesController {
     private void displaySelectedTeamDetails() {
         int selectedRow = view.getSelectedTeamRow();
         if (selectedRow >= 0) {
-            // Convertir el índice de la fila visual al índice del modelo (por si está ordenada)
             int modelRow = view.getTeamsTable().convertRowIndexToModel(selectedRow);
 
             ChampionsTeam team = model.getAllTeams().get(modelRow);
@@ -250,9 +241,6 @@ public class ChampionsTitlesController {
     }
 
     private void showAddTeamDialog() {
-        // Aquí implementaríamos un diálogo para agregar un nuevo equipo
-        // Por simplicidad, se crea un JOptionPane básico
-
         String teamName = JOptionPane.showInputDialog(view,
                 "Nombre del equipo:",
                 "Agregar Nuevo Equipo", JOptionPane.PLAIN_MESSAGE);
@@ -290,7 +278,6 @@ public class ChampionsTitlesController {
     }
 
     private void addTitleToTeam(ChampionsTeam team) {
-        // Diálogo para agregar un título
         JTextField yearField = new JTextField();
         JTextField goalsField = new JTextField();
 
@@ -307,7 +294,6 @@ public class ChampionsTitlesController {
                 int year = Integer.parseInt(yearField.getText().trim());
                 int goals = Integer.parseInt(goalsField.getText().trim());
 
-                // Validar datos
                 if (year < 1955 || year > 2025) {
                     throw new IllegalArgumentException("El año debe estar entre 1955 y 2025.");
                 }
@@ -315,7 +301,6 @@ public class ChampionsTitlesController {
                     throw new IllegalArgumentException("La cantidad de goles no puede ser negativa.");
                 }
 
-                // Agregar título al equipo
                 Title title = new Title(year, goals);
                 team.addTitle(title);
 
@@ -324,14 +309,12 @@ public class ChampionsTitlesController {
                         "Por favor, introduzca valores numéricos válidos.",
                         "Error de Formato", JOptionPane.ERROR_MESSAGE);
 
-                // Intentar nuevamente
                 addTitleToTeam(team);
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(view,
                         e.getMessage(),
                         "Error de Validación", JOptionPane.ERROR_MESSAGE);
 
-                // Intentar nuevamente
                 addTitleToTeam(team);
             }
         }
@@ -368,7 +351,6 @@ public class ChampionsTitlesController {
         titlesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane titlesScrollPane = new JScrollPane(titlesList);
 
-        // Panel de botones para gestionar títulos
         JPanel titlesButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton addTitleButton = new JButton("Agregar Título");
         JButton editTitleButton = new JButton("Editar Título");
@@ -381,11 +363,9 @@ public class ChampionsTitlesController {
         titlesPanel.add(titlesScrollPane, BorderLayout.CENTER);
         titlesPanel.add(titlesButtonPanel, BorderLayout.SOUTH);
 
-        // Agregar pestañas
         tabbedPane.addTab("Información Básica", basicInfoPanel);
         tabbedPane.addTab("Títulos", titlesPanel);
 
-        // Configurar diálogo
         JDialog dialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(view), "Editar Equipo", true);
         dialog.setLayout(new BorderLayout());
         dialog.add(tabbedPane, BorderLayout.CENTER);
@@ -397,7 +377,6 @@ public class ChampionsTitlesController {
         buttonPanel.add(cancelButton);
         dialog.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Evento para agregar un nuevo título
         addTitleButton.addActionListener(e -> {
             addTitleToTeam(team);
             // Actualizar la lista de títulos
@@ -520,14 +499,12 @@ public class ChampionsTitlesController {
                         "Por favor, introduzca valores numéricos válidos.",
                         "Error de Formato", JOptionPane.ERROR_MESSAGE);
 
-                // Intentar nuevamente
                 editTitle(team, titleIndex);
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(view,
                         e.getMessage(),
                         "Error de Validación", JOptionPane.ERROR_MESSAGE);
 
-                // Intentar nuevamente
                 editTitle(team, titleIndex);
             }
         }

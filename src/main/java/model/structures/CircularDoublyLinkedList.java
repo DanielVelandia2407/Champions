@@ -270,7 +270,7 @@ public class CircularDoublyLinkedList<T> {
             }
         }
 
-        // Agregar elementos restantes
+        // Agregar los elementos restantes de la lista izquierda
         result.addAll(left.subList(leftIndex, left.size()));
         result.addAll(right.subList(rightIndex, right.size()));
 
