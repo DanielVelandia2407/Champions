@@ -6,7 +6,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class ChampionsTitlesView extends JFrame {
     private JTable teamsTable;
@@ -15,10 +14,12 @@ public class ChampionsTitlesView extends JFrame {
     private JButton btnEditTeam;
     private JButton btnDeleteTeam;
     private JButton btnBack;
+    private JButton btnLoadFile;
     private JTextField searchField;
     private JButton btnSearch;
     private JTextArea detailsArea;
     private JComboBox<String> sortOptionComboBox;
+    private JLabel lblFilePath;
 
     public ChampionsTitlesView() {
         // Configuración de la ventana
@@ -73,9 +74,16 @@ public class ChampionsTitlesView extends JFrame {
         lblSubtitle.setForeground(new Color(240, 248, 255));
         lblSubtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        lblFilePath = new JLabel("Archivo: data/champions.json");
+        lblFilePath.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        lblFilePath.setForeground(new Color(240, 248, 255));
+        lblFilePath.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         panel.add(lblTitle);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(lblSubtitle);
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
+        panel.add(lblFilePath);
 
         return panel;
     }
@@ -100,12 +108,19 @@ public class ChampionsTitlesView extends JFrame {
         sortOptionComboBox = new JComboBox<>(sortOptions);
         sortOptionComboBox.setPreferredSize(new Dimension(180, 25));
 
+        btnLoadFile = new JButton("Cargar Archivo");
+        btnLoadFile.setBackground(new Color(255, 165, 0));
+        btnLoadFile.setForeground(Color.WHITE);
+        btnLoadFile.setFocusPainted(false);
+
         panel.add(lblSearch);
         panel.add(searchField);
         panel.add(btnSearch);
         panel.add(Box.createRigidArea(new Dimension(20, 0)));
         panel.add(lblSort);
         panel.add(sortOptionComboBox);
+        panel.add(Box.createRigidArea(new Dimension(20, 0))); // Añadir espacio antes del botón
+        panel.add(btnLoadFile);
 
         return panel;
     }
@@ -214,10 +229,26 @@ public class ChampionsTitlesView extends JFrame {
 
     // Métodos para añadir datos a la tabla
     public void setTeamsData(Object[][] data) {
+        System.out.println("Configurando datos en la tabla: " + data.length + " filas");
+
         tableModel.setRowCount(0); // Limpiar tabla
         for (Object[] row : data) {
             tableModel.addRow(row);
         }
+
+        System.out.println("La tabla ahora tiene " + tableModel.getRowCount() + " filas");
+
+        // Forzar repintado
+        teamsTable.repaint();
+
+        // Si hay datos, seleccionar la primera fila
+        if (tableModel.getRowCount() > 0) {
+            teamsTable.setRowSelectionInterval(0, 0);
+        }
+    }
+
+    public void updateFilePathLabel(String filePath) {
+        lblFilePath.setText("Archivo: " + filePath);
     }
 
     // Método para mostrar detalles de un equipo
@@ -249,6 +280,8 @@ public class ChampionsTitlesView extends JFrame {
     public void addSortComboBoxListener(ActionListener listener) {
         sortOptionComboBox.addActionListener(listener);
     }
+
+    public void addLoadFileButtonListener(ActionListener listener) {btnLoadFile.addActionListener(listener);}
 
     public void addTableSelectionListener(ListSelectionListener listener) {
         teamsTable.getSelectionModel().addListSelectionListener(listener);

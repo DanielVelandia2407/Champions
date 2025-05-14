@@ -11,19 +11,21 @@ import java.util.List;
 public class ChampionsTitlesModel {
     private CircularDoublyLinkedList<ChampionsTeam> teamsList;
     private FileManager fileManager;
-    private static final String FILE_PATH = "data/champions.json";
+    private static final String DEFAULT_FILE_PATH = "data/champions.json";
+    private String currentFilePath;
 
     public ChampionsTitlesModel() {
         this.teamsList = new CircularDoublyLinkedList<>();
         this.fileManager = new FileManager();
+        this.currentFilePath = DEFAULT_FILE_PATH;
     }
 
     /**
-     * Carga los equipos desde el archivo JSON
+     * Carga los equipos desde el archivo JSON predeterminado
      * @throws Exception Si ocurre un error durante la carga
      */
     public void loadTeamsFromFile() throws Exception {
-        List<ChampionsTeam> teams = fileManager.loadTeamsFromJSON(FILE_PATH);
+        List<ChampionsTeam> teams = fileManager.loadTeamsFromJSON(currentFilePath);
         teamsList.clear();
 
         // Agregar equipos a la lista circular doblemente enlazada
@@ -36,12 +38,52 @@ public class ChampionsTitlesModel {
     }
 
     /**
-     * Guarda los equipos en el archivo JSON
+     * Carga los equipos desde un archivo JSON específico
+     * @param filePath Ruta del archivo JSON
+     * @throws Exception Si ocurre un error durante la carga
+     */
+    public void loadTeamsFromFile(String filePath) throws Exception {
+        List<ChampionsTeam> teams = fileManager.loadTeamsFromJSON(filePath);
+        teamsList.clear();
+
+        // Agregar equipos a la lista circular doblemente enlazada
+        for (ChampionsTeam team : teams) {
+            teamsList.add(team);
+        }
+
+        // Actualizar la ruta del archivo actual
+        this.currentFilePath = filePath;
+
+        // Ordenar por número de títulos (mayor a menor) por defecto
+        sortTeams(0);
+    }
+
+    /**
+     * Guarda los equipos en el archivo JSON actual
      * @throws Exception Si ocurre un error durante el guardado
      */
     public void saveTeamsToFile() throws Exception {
         List<ChampionsTeam> teams = getAllTeams();
-        fileManager.saveTeamsToJSON(teams, FILE_PATH);
+        fileManager.saveTeamsToJSON(teams, currentFilePath);  // Usar currentFilePath en lugar de FILE_PATH
+    }
+
+    /**
+     * Guarda los equipos en un archivo JSON específico
+     * @param filePath Ruta del archivo JSON
+     * @throws Exception Si ocurre un error durante el guardado
+     */
+    public void saveTeamsToFile(String filePath) throws Exception {
+        List<ChampionsTeam> teams = getAllTeams();
+        fileManager.saveTeamsToJSON(teams, filePath);
+        this.currentFilePath = filePath; // Actualizar la ruta actual
+    }
+
+    /**
+     * Obtiene la ruta del archivo actual
+     * @return Ruta del archivo JSON actual
+     */
+    public String getCurrentFilePath() {
+        return currentFilePath;
     }
 
     /**

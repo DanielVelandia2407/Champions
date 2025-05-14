@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
     private JButton btnListaChampions;
-    private JButton btnEliminacionesRealMadrid;
+    private JButton btnEliminacionesRM;
     private JButton btnExit;
 
     public MainView() {
@@ -57,13 +57,13 @@ public class MainView extends JFrame {
 
         // Styled buttons - diferentes colores para cada opción
         btnListaChampions = createStyledButton("Listado de Champions por Equipo", new Color(41, 128, 185));
-        btnEliminacionesRealMadrid = createStyledButton("Eliminaciones del Real Madrid", new Color(46, 134, 193));
+        btnEliminacionesRM = createStyledButton("Eliminaciones del Real Madrid", new Color(46, 134, 193));
         btnExit = createStyledButton("Salir", new Color(231, 76, 60));
 
         // Añadir botones con márgenes
         buttonPanel.add(btnListaChampions);
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 15))); // Espacio vertical
-        buttonPanel.add(btnEliminacionesRealMadrid);
+        buttonPanel.add(btnEliminacionesRM);
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 15))); // Espacio vertical
         buttonPanel.add(btnExit);
 
@@ -120,7 +120,7 @@ public class MainView extends JFrame {
     }
 
     public void addEliminacionesRealMadridListener(ActionListener listener) {
-        btnEliminacionesRealMadrid.addActionListener(listener);
+        btnEliminacionesRM.addActionListener(listener);
     }
 
     public void showView() {

@@ -55,7 +55,7 @@ The project follows the Model-View-Controller (MVC) architecture pattern:
 1. Clone or download this repository.
 2. Open the project in your preferred Java IDE (Eclipse, IntelliJ IDEA, etc.).
 3. Build the project.
-4. Run the `Main.java` file.
+4. Run the `main.java.Main.java` file.
 
 Alternatively, you can run the compiled JAR file (if available) using:
 

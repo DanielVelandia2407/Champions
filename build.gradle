@@ -20,16 +20,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src']
-        }
-    }
-}
-
 application {
-    mainClass = 'Main'
+    mainClass = 'main.java.Main'
 }
 
 test {

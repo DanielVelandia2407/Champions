@@ -9,10 +9,12 @@ import view.MainView;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
-
+import javax.swing.DefaultListModel;
 public class ChampionsTitlesController {
     private ChampionsTitlesView view;
     private ChampionsTitlesModel model;
@@ -84,6 +86,70 @@ public class ChampionsTitlesController {
                         "Selección Requerida", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+
+        // Listener para cargar archivo
+        view.addLoadFileButtonListener(e -> loadCustomJsonFile());
+    }
+
+    private void loadCustomJsonFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Seleccionar Archivo JSON");
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos JSON (*.json)", "json"));
+
+        // Opcional: Establecer directorio inicial a Descargas
+        String userHome = System.getProperty("user.home");
+        File downloadsDir = new File(userHome + "/Downloads");
+        if (downloadsDir.exists()) {
+            fileChooser.setCurrentDirectory(downloadsDir);
+        }
+
+        int result = fileChooser.showOpenDialog(view);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                // Depuración
+                System.out.println("Archivo seleccionado: " + selectedFile.getAbsolutePath());
+                System.out.println("¿El archivo existe? " + selectedFile.exists());
+                System.out.println("Tamaño del archivo: " + selectedFile.length() + " bytes");
+
+                // Si el archivo no existe, lanzar una excepción
+                if (!selectedFile.exists()) {
+                    throw new FileNotFoundException("El archivo seleccionado no existe: " + selectedFile.getAbsolutePath());
+                }
+
+                // Cargar equipos desde el archivo seleccionado
+                model.loadTeamsFromFile(selectedFile.getAbsolutePath());
+
+                // Verificar si se cargaron equipos
+                List<ChampionsTeam> teams = model.getAllTeams();
+                System.out.println("Equipos cargados: " + teams.size());
+
+                // Imprimir los equipos cargados para depuración
+                for (ChampionsTeam team : teams) {
+                    System.out.println("Equipo: " + team.getName() + ", Títulos: " + team.getTitles().size());
+                }
+
+                // Actualizar la tabla y la etiqueta con la ruta del archivo
+                updateTeamsTable();
+                view.updateFilePathLabel(selectedFile.getAbsolutePath());
+
+                JOptionPane.showMessageDialog(view,
+                        "Archivo cargado exitosamente. " + teams.size() + " equipos encontrados.",
+                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (FileNotFoundException e) {
+                System.err.println("Error de archivo no encontrado: " + e.getMessage());
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(view,
+                        "Error: Archivo no encontrado: " + e.getMessage(),
+                        "Error de Carga", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                System.err.println("Error al cargar el archivo: " + e.getMessage());
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(view,
+                        "Error al cargar el archivo: " + e.getMessage(),
+                        "Error de Carga", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     private void loadTeamsData() {
@@ -91,6 +157,9 @@ public class ChampionsTitlesController {
         try {
             model.loadTeamsFromFile();
             updateTeamsTable();
+
+            // Actualizar la etiqueta con la ruta del archivo predeterminado
+            view.updateFilePathLabel(model.getCurrentFilePath());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view,
                     "Error al cargar los datos: " + e.getMessage(),
@@ -273,28 +342,193 @@ public class ChampionsTitlesController {
         int modelRow = view.getTeamsTable().convertRowIndexToModel(selectedRow);
         ChampionsTeam team = model.getAllTeams().get(modelRow);
 
-        // Aquí implementaríamos un diálogo completo para editar el equipo
-        // Por simplicidad, solo permitimos cambiar el nombre del equipo
+        // Crear un panel con pestañas para organizar la edición
+        JTabbedPane tabbedPane = new JTabbedPane();
 
-        String newName = JOptionPane.showInputDialog(view,
-                "Nombre del equipo:",
-                "Editar Equipo", JOptionPane.PLAIN_MESSAGE,
-                null, null, team.getName()).toString();
+        // Pestaña para editar información básica del equipo
+        JPanel basicInfoPanel = new JPanel(new BorderLayout(10, 10));
+        JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JTextField nameField = new JTextField(team.getName(), 20);
+        namePanel.add(new JLabel("Nombre del equipo:"));
+        namePanel.add(nameField);
+        basicInfoPanel.add(namePanel, BorderLayout.NORTH);
 
-        if (newName != null && !newName.trim().isEmpty() && !newName.equals(team.getName())) {
-            team.setName(newName.trim());
+        // Pestaña para gestionar títulos
+        JPanel titlesPanel = new JPanel(new BorderLayout(10, 10));
+        DefaultListModel<String> titlesListModel = new DefaultListModel<>();
 
-            // Guardar cambios y actualizar vista
+        // Llenar la lista de títulos
+        List<Title> titles = team.getTitles();
+        for (int i = 0; i < titles.size(); i++) {
+            Title title = titles.get(i);
+            titlesListModel.addElement("Año: " + title.getYear() + ", Goles: " + title.getTopScorerGoals());
+        }
+
+        JList<String> titlesList = new JList<>(titlesListModel);
+        titlesList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane titlesScrollPane = new JScrollPane(titlesList);
+
+        // Panel de botones para gestionar títulos
+        JPanel titlesButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JButton addTitleButton = new JButton("Agregar Título");
+        JButton editTitleButton = new JButton("Editar Título");
+        JButton deleteTitleButton = new JButton("Eliminar Título");
+
+        titlesButtonPanel.add(addTitleButton);
+        titlesButtonPanel.add(editTitleButton);
+        titlesButtonPanel.add(deleteTitleButton);
+
+        titlesPanel.add(titlesScrollPane, BorderLayout.CENTER);
+        titlesPanel.add(titlesButtonPanel, BorderLayout.SOUTH);
+
+        // Agregar pestañas
+        tabbedPane.addTab("Información Básica", basicInfoPanel);
+        tabbedPane.addTab("Títulos", titlesPanel);
+
+        // Configurar diálogo
+        JDialog dialog = new JDialog((JFrame) SwingUtilities.getWindowAncestor(view), "Editar Equipo", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.add(tabbedPane, BorderLayout.CENTER);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Guardar");
+        JButton cancelButton = new JButton("Cancelar");
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Evento para agregar un nuevo título
+        addTitleButton.addActionListener(e -> {
+            addTitleToTeam(team);
+            // Actualizar la lista de títulos
+            updateTitlesList(titlesListModel, team.getTitles());
+        });
+
+        // Evento para editar un título seleccionado
+        editTitleButton.addActionListener(e -> {
+            int selectedIndex = titlesList.getSelectedIndex();
+            if (selectedIndex >= 0) {
+                editTitle(team, selectedIndex);
+                // Actualizar la lista después de editar
+                updateTitlesList(titlesListModel, team.getTitles());
+            } else {
+                JOptionPane.showMessageDialog(dialog,
+                        "Por favor, seleccione un título para editar.",
+                        "Selección Requerida", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        // Evento para eliminar un título seleccionado
+        deleteTitleButton.addActionListener(e -> {
+            int selectedIndex = titlesList.getSelectedIndex();
+            if (selectedIndex >= 0) {
+                int confirm = JOptionPane.showConfirmDialog(dialog,
+                        "¿Está seguro de que desea eliminar este título?",
+                        "Confirmar Eliminación",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirm == JOptionPane.YES_OPTION) {
+                    // Eliminar el título
+                    team.getTitles().remove(selectedIndex);
+                    // Actualizar la lista
+                    updateTitlesList(titlesListModel, team.getTitles());
+                }
+            } else {
+                JOptionPane.showMessageDialog(dialog,
+                        "Por favor, seleccione un título para eliminar.",
+                        "Selección Requerida", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        // Evento para guardar cambios
+        saveButton.addActionListener(e -> {
+            String newName = nameField.getText().trim();
+            if (!newName.isEmpty()) {
+                team.setName(newName);
+
+                // Guardar cambios y actualizar vista
+                try {
+                    model.saveTeamsToFile();
+                    updateTeamsTable();
+                    dialog.dispose();
+                    JOptionPane.showMessageDialog(view,
+                            "Equipo actualizado exitosamente.",
+                            "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(view,
+                            "Error al guardar los datos: " + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(dialog,
+                        "El nombre del equipo no puede estar vacío.",
+                        "Error de Validación", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        // Evento para cancelar
+        cancelButton.addActionListener(e -> dialog.dispose());
+
+        // Configurar tamaño y mostrar diálogo
+        dialog.setSize(400, 400);
+        dialog.setLocationRelativeTo(view);
+        dialog.setVisible(true);
+    }
+
+    // Método para actualizar la lista de títulos
+    private void updateTitlesList(DefaultListModel<String> model, List<Title> titles) {
+        model.clear();
+        for (Title title : titles) {
+            model.addElement("Año: " + title.getYear() + ", Goles: " + title.getTopScorerGoals());
+        }
+    }
+
+    // Método para editar un título existente
+    private void editTitle(ChampionsTeam team, int titleIndex) {
+        Title title = team.getTitles().get(titleIndex);
+
+        JTextField yearField = new JTextField(String.valueOf(title.getYear()));
+        JTextField goalsField = new JTextField(String.valueOf(title.getTopScorerGoals()));
+
+        Object[] message = {
+                "Año del título:", yearField,
+                "Goles del máximo goleador:", goalsField
+        };
+
+        int option = JOptionPane.showConfirmDialog(view, message, "Editar Título",
+                JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
             try {
-                model.saveTeamsToFile();
-                updateTeamsTable();
+                int year = Integer.parseInt(yearField.getText().trim());
+                int goals = Integer.parseInt(goalsField.getText().trim());
+
+                // Validar datos
+                if (year < 1955 || year > 2025) {
+                    throw new IllegalArgumentException("El año debe estar entre 1955 y 2025.");
+                }
+                if (goals < 0) {
+                    throw new IllegalArgumentException("La cantidad de goles no puede ser negativa.");
+                }
+
+                // Actualizar título
+                title.setYear(year);
+                title.setTopScorerGoals(goals);
+
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(view,
-                        "Equipo actualizado exitosamente.",
-                        "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception e) {
+                        "Por favor, introduzca valores numéricos válidos.",
+                        "Error de Formato", JOptionPane.ERROR_MESSAGE);
+
+                // Intentar nuevamente
+                editTitle(team, titleIndex);
+            } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(view,
-                        "Error al guardar los datos: " + e.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                        e.getMessage(),
+                        "Error de Validación", JOptionPane.ERROR_MESSAGE);
+
+                // Intentar nuevamente
+                editTitle(team, titleIndex);
             }
         }
     }

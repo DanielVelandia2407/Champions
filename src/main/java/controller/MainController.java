@@ -5,6 +5,7 @@ import view.ChampionsTitlesView;
 import view.EliminationsRMView;
 
 import model.ChampionsTitlesModel;
+import model.EliminationsRMModel;
 
 public class MainController {
     private MainView mainView;
@@ -14,7 +15,7 @@ public class MainController {
 
         // Listeners para nuestros nuevos botones
         this.mainView.addListaChampionsListener(e -> openChampionsListView());
-        //this.mainView.addEliminacionesRealMadridListener(e -> openRealMadridEliminacionesView());
+        this.mainView.addEliminacionesRealMadridListener(e -> openRealMadridEliminacionesView());
     }
 
     // Método para mostrar la vista de Listado de Champions
@@ -29,15 +30,23 @@ public class MainController {
         championsListView.showView();
     }
 
-//    // Método para mostrar la vista de Eliminaciones del Real Madrid
-//    private void openRealMadridEliminacionesView() {
-//        mainView.setVisible(false);
-//        EliminationsRMView realMadridView = new EliminationsRMView();
-//        EliminationsRMController controller = new EliminationsRMController(realMadridView);
-//        controller.setMainView(mainView);
-//
-//        realMadridView.showView();
-//    }
+    // Método para mostrar la vista de Eliminaciones del Real Madrid
+    private void openRealMadridEliminacionesView() {
+        mainView.setVisible(false);
+
+        // Crear instancias del modelo y la vista
+        EliminationsRMView eliminationsView = new EliminationsRMView();
+        EliminationsRMModel eliminationsModel = new EliminationsRMModel();
+
+        // Crear el controlador y conectarlo con el modelo y la vista
+        EliminationsRMController controller = new EliminationsRMController(eliminationsView, eliminationsModel);
+
+        // Establecer la referencia a la vista principal para poder volver atrás
+        controller.setMainView(mainView);
+
+        // Mostrar la vista de eliminaciones
+        eliminationsView.showView();
+    }
 
     // Método main para demostración
     public static void main(String[] args) {
