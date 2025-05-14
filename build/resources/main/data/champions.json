@@ -1,0 +1,380 @@
+[
+  {
+    "name": "Real Madrid",
+    "titles": [
+      {
+        "year": 1956,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 1957,
+        "topScorerGoals": 12
+      },
+      {
+        "year": 1958,
+        "topScorerGoals": 9
+      },
+      {
+        "year": 1959,
+        "topScorerGoals": 5
+      },
+      {
+        "year": 1960,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 1966,
+        "topScorerGoals": 6
+      },
+      {
+        "year": 1998,
+        "topScorerGoals": 10
+      },
+      {
+        "year": 2000,
+        "topScorerGoals": 11
+      },
+      {
+        "year": 2002,
+        "topScorerGoals": 10
+      },
+      {
+        "year": 2014,
+        "topScorerGoals": 17
+      },
+      {
+        "year": 2016,
+        "topScorerGoals": 16
+      },
+      {
+        "year": 2017,
+        "topScorerGoals": 12
+      },
+      {
+        "year": 2018,
+        "topScorerGoals": 15
+      },
+      {
+        "year": 2022,
+        "topScorerGoals": 15
+      }
+    ]
+  },
+  {
+    "name": "AC Milan",
+    "titles": [
+      {
+        "year": 1963,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 1969,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 1989,
+        "topScorerGoals": 9
+      },
+      {
+        "year": 1990,
+        "topScorerGoals": 6
+      },
+      {
+        "year": 1994,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 2003,
+        "topScorerGoals": 12
+      },
+      {
+        "year": 2007,
+        "topScorerGoals": 10
+      }
+    ]
+  },
+  {
+    "name": "Bayern Munich",
+    "titles": [
+      {
+        "year": 1974,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 1975,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 1976,
+        "topScorerGoals": 9
+      },
+      {
+        "year": 2001,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 2013,
+        "topScorerGoals": 10
+      },
+      {
+        "year": 2020,
+        "topScorerGoals": 15
+      }
+    ]
+  },
+  {
+    "name": "Liverpool",
+    "titles": [
+      {
+        "year": 1977,
+        "topScorerGoals": 6
+      },
+      {
+        "year": 1978,
+        "topScorerGoals": 5
+      },
+      {
+        "year": 1981,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 1984,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 2005,
+        "topScorerGoals": 5
+      },
+      {
+        "year": 2019,
+        "topScorerGoals": 12
+      }
+    ]
+  },
+  {
+    "name": "Barcelona",
+    "titles": [
+      {
+        "year": 1992,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 2006,
+        "topScorerGoals": 9
+      },
+      {
+        "year": 2009,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 2011,
+        "topScorerGoals": 12
+      },
+      {
+        "year": 2015,
+        "topScorerGoals": 10
+      }
+    ]
+  },
+  {
+    "name": "Ajax",
+    "titles": [
+      {
+        "year": 1971,
+        "topScorerGoals": 6
+      },
+      {
+        "year": 1972,
+        "topScorerGoals": 5
+      },
+      {
+        "year": 1973,
+        "topScorerGoals": 12
+      },
+      {
+        "year": 1995,
+        "topScorerGoals": 7
+      }
+    ]
+  },
+  {
+    "name": "Manchester United",
+    "titles": [
+      {
+        "year": 1968,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 1999,
+        "topScorerGoals": 8
+      },
+      {
+        "year": 2008,
+        "topScorerGoals": 8
+      }
+    ]
+  },
+  {
+    "name": "Inter Milan",
+    "titles": [
+      {
+        "year": 1964,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 1965,
+        "topScorerGoals": 9
+      },
+      {
+        "year": 2010,
+        "topScorerGoals": 8
+      }
+    ]
+  },
+  {
+    "name": "Chelsea",
+    "titles": [
+      {
+        "year": 2012,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 2021,
+        "topScorerGoals": 10
+      }
+    ]
+  },
+  {
+    "name": "Nottingham Forest",
+    "titles": [
+      {
+        "year": 1979,
+        "topScorerGoals": 6
+      },
+      {
+        "year": 1980,
+        "topScorerGoals": 5
+      }
+    ]
+  },
+  {
+    "name": "Porto",
+    "titles": [
+      {
+        "year": 1987,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 2004,
+        "topScorerGoals": 9
+      }
+    ]
+  },
+  {
+    "name": "Benfica",
+    "titles": [
+      {
+        "year": 1961,
+        "topScorerGoals": 6
+      },
+      {
+        "year": 1962,
+        "topScorerGoals": 7
+      }
+    ]
+  },
+  {
+    "name": "Juventus",
+    "titles": [
+      {
+        "year": 1985,
+        "topScorerGoals": 7
+      },
+      {
+        "year": 1996,
+        "topScorerGoals": 6
+      }
+    ]
+  },
+  {
+    "name": "Borussia Dortmund",
+    "titles": [
+      {
+        "year": 1997,
+        "topScorerGoals": 5
+      }
+    ]
+  },
+  {
+    "name": "Marseille",
+    "titles": [
+      {
+        "year": 1993,
+        "topScorerGoals": 7
+      }
+    ]
+  },
+  {
+    "name": "Feyenoord",
+    "titles": [
+      {
+        "year": 1970,
+        "topScorerGoals": 6
+      }
+    ]
+  },
+  {
+    "name": "Aston Villa",
+    "titles": [
+      {
+        "year": 1982,
+        "topScorerGoals": 5
+      }
+    ]
+  },
+  {
+    "name": "PSV Eindhoven",
+    "titles": [
+      {
+        "year": 1988,
+        "topScorerGoals": 4
+      }
+    ]
+  },
+  {
+    "name": "Celtic",
+    "titles": [
+      {
+        "year": 1967,
+        "topScorerGoals": 6
+      }
+    ]
+  },
+  {
+    "name": "Hamburg",
+    "titles": [
+      {
+        "year": 1983,
+        "topScorerGoals": 7
+      }
+    ]
+  },
+  {
+    "name": "Steaua Bucarest",
+    "titles": [
+      {
+        "year": 1986,
+        "topScorerGoals": 4
+      }
+    ]
+  },
+  {
+    "name": "Red Star Belgrade",
+    "titles": [
+      {
+        "year": 1991,
+        "topScorerGoals": 6
+      }
+    ]
+  }
+]

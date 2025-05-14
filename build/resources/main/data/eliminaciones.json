@@ -1,0 +1,47 @@
+[
+  {
+    "season": "2022-2023",
+    "phase": "Semifinal",
+    "opponent": "Manchester City",
+    "resultHome": "1-1",
+    "resultAway": "0-4",
+    "description": "El Real Madrid cayó eliminado en semifinales ante el Manchester City tras un contundente 4-0 en el Etihad Stadium. Después de un empate a uno en el Bernabéu, el equipo de Guardiola demostró su superioridad con goles de Bernardo Silva (2), Akanji y Álvarez, poniendo fin a las esperanzas del Real Madrid de defender su título.",
+    "imagePath": "images/eliminations/city_2023.jpg"
+  },
+  {
+    "season": "2019-2020",
+    "phase": "Octavos de final",
+    "opponent": "Manchester City",
+    "resultHome": "1-2",
+    "resultAway": "1-2",
+    "description": "El equipo blanco fue eliminado en octavos por el Manchester City de Guardiola, con un global de 2-4. En el partido de ida en el Bernabéu, el Madrid se adelantó con gol de Isco, pero el City remontó con tantos de Gabriel Jesus y De Bruyne. En el partido de vuelta en Manchester, el Madrid cayó nuevamente por 2-1, con protagonismo negativo para Varane.",
+    "imagePath": "images/eliminations/city_2020.jpg"
+  },
+  {
+    "season": "2018-2019",
+    "phase": "Octavos de final",
+    "opponent": "Ajax",
+    "resultHome": "2-1",
+    "resultAway": "1-4",
+    "description": "Histórica remontada del Ajax en el Bernabéu, ganando 1-4 y eliminando al tricampeón de Europa. Tras ganar 2-1 en Amsterdam, el Madrid era favorito para pasar, pero el joven equipo del Ajax sorprendió con una exhibición en el Bernabéu con goles de Ziyech, Neres, Tadic y Schöne, poniendo fin a la era de dominio europeo madridista.",
+    "imagePath": "images/eliminations/ajax_2019.jpg"
+  },
+  {
+    "season": "2014-2015",
+    "phase": "Semifinal",
+    "opponent": "Juventus",
+    "resultHome": "1-1",
+    "resultAway": "1-2",
+    "description": "La Juventus de Allegri eliminó al Real Madrid de Ancelotti en semifinales con un resultado global de 3-2. En el partido de ida en Turín, la Juventus ganó 2-1 con goles de Morata y Tevez, mientras que en el Bernabéu, pese al tanto inicial de Cristiano Ronaldo, Morata (ex madridista) anotó el gol que clasificó a los italianos para la final de Berlín.",
+    "imagePath": "images/eliminations/juventus_2015.jpg"
+  },
+  {
+    "season": "2012-2013",
+    "phase": "Semifinal",
+    "opponent": "Borussia Dortmund",
+    "resultHome": "2-0",
+    "resultAway": "1-4",
+    "description": "El Borussia Dortmund de Jürgen Klopp superó al Real Madrid de Mourinho en semifinales, especialmente gracias a un impresionante 4-1 en la ida con cuatro goles de Robert Lewandowski. A pesar de la victoria por 2-0 en el Bernabéu en la vuelta, el Madrid quedó eliminado con un 4-3 en el global, quedándose a las puertas de la final de Wembley.",
+    "imagePath": "images/eliminations/dortmund_2013.jpg"
+  }
+]
